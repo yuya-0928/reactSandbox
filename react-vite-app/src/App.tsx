@@ -1,10 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import { h } from "./modules/h.ts";
+import { render } from "./modules/render.ts";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  // JSX -> VDOM
+  const vdom = h("div", { id: "foo" }, "Hello!");
+
+  // VDOM -> DOM
+  const dom = render(vdom);
+
+  //add the tree to <body></body>
+  document.body.appendChild(dom);
 
   return (
     <>
@@ -29,7 +39,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
